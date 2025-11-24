@@ -167,6 +167,9 @@ EL-Cielo-Hotel-management-system/
 - JWT tokens are used for authentication
 - Input validation on all endpoints
 - Protected routes require valid authentication tokens
+- Rate limiting to prevent brute force attacks:
+  - Authentication endpoints: 5 requests per 15 minutes per IP
+  - General API endpoints: 100 requests per 15 minutes per IP
 
 ## Contributing
 

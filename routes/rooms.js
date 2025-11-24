@@ -8,14 +8,15 @@ const {
   getUserBookings
 } = require('../controllers/roomController');
 const { authMiddleware } = require('../middleware/auth');
+const { apiLimiter } = require('../middleware/rateLimiter');
 
-// Public routes
-router.get('/', getAllRooms);
-router.get('/available', getAvailableRooms);
-router.get('/:id', getRoomById);
+// Public routes with rate limiting
+router.get('/', apiLimiter, getAllRooms);
+router.get('/available', apiLimiter, getAvailableRooms);
+router.get('/:id', apiLimiter, getRoomById);
 
-// Protected routes
-router.post('/:id/book', authMiddleware, bookRoom);
-router.get('/bookings/my-bookings', authMiddleware, getUserBookings);
+// Protected routes with rate limiting
+router.post('/:id/book', authMiddleware, apiLimiter, bookRoom);
+router.get('/bookings/my-bookings', authMiddleware, apiLimiter, getUserBookings);
 
 module.exports = router;
