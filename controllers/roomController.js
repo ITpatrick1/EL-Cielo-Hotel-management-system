@@ -1,4 +1,4 @@
-const { rooms, bookings } = require('../models/database');
+const { rooms, bookings, getNextBookingId } = require('../models/database');
 
 // Get all rooms
 const getAllRooms = (req, res) => {
@@ -35,7 +35,7 @@ const bookRoom = (req, res) => {
 
   // Create booking
   const booking = {
-    id: bookings.length + 1,
+    id: getNextBookingId(),
     roomId: room.id,
     userId: req.user.id,
     checkIn: req.body.checkIn || new Date().toISOString(),

@@ -3,6 +3,10 @@ const users = [];
 const rooms = [];
 const bookings = [];
 
+// ID counters to avoid duplicate IDs
+let userIdCounter = 1;
+let bookingIdCounter = 1;
+
 // Initialize with some sample rooms
 rooms.push(
   { id: 1, number: '101', type: 'Single', price: 50, available: true },
@@ -12,8 +16,13 @@ rooms.push(
   { id: 5, number: '301', type: 'Suite', price: 150, available: true }
 );
 
+const getNextUserId = () => userIdCounter++;
+const getNextBookingId = () => bookingIdCounter++;
+
 module.exports = {
   users,
   rooms,
-  bookings
+  bookings,
+  getNextUserId,
+  getNextBookingId
 };

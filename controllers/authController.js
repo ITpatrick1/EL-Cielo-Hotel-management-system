@@ -2,8 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
-const { users } = require('../models/database');
-require('dotenv').config();
+const { users, getNextUserId } = require('../models/database');
+const config = require('../config/config');
 
 // Validation rules
 const registerValidation = [
@@ -38,7 +38,7 @@ const register = async (req, res) => {
 
     // Create new user
     const newUser = new User(
-      users.length + 1,
+      getNextUserId(),
       username,
       email,
       hashedPassword,
@@ -50,7 +50,7 @@ const register = async (req, res) => {
     // Generate JWT token
     const token = jwt.sign(
       { id: newUser.id, email: newUser.email, role: newUser.role },
-      process.env.JWT_SECRET || 'default_secret',
+      config.JWT_SECRET,
       { expiresIn: '24h' }
     );
 
@@ -89,7 +89,7 @@ const login = async (req, res) => {
     // Generate JWT token
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
-      process.env.JWT_SECRET || 'default_secret',
+      config.JWT_SECRET,
       { expiresIn: '24h' }
     );
 

@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+const config = require('./config/config');
 
 const authRoutes = require('./routes/auth');
 const roomRoutes = require('./routes/rooms');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = config.PORT;
 
 // Middleware
 app.use(cors());
