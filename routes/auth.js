@@ -8,13 +8,13 @@ const {
   loginValidation
 } = require('../controllers/authController');
 const { authMiddleware } = require('../middleware/auth');
-const { authLimiter } = require('../middleware/rateLimiter');
+const { authLimiter, apiLimiter } = require('../middleware/rateLimiter');
 
 // Public routes with rate limiting
 router.post('/register', authLimiter, registerValidation, register);
 router.post('/login', authLimiter, loginValidation, login);
 
-// Protected routes
-router.get('/profile', authMiddleware, getProfile);
+// Protected routes with rate limiting
+router.get('/profile', authMiddleware, apiLimiter, getProfile);
 
 module.exports = router;
