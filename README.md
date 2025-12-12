@@ -4,11 +4,13 @@ The closest full-service hotel (rooms, restaurant, ballroom, and swimming pool) 
 
 ## Features
 
+- **Professional Frontend**: Modern, responsive web interface with animated gradient background
 - **User Authentication**: Secure registration and login system with JWT tokens
 - **Room Management**: Browse available rooms and view room details
 - **Booking System**: Book rooms with authentication
 - **User Profiles**: Manage user profiles and view booking history
 - **RESTful API**: Clean and well-documented API endpoints
+- **Contact Page**: Professional contact form with hotel information
 
 ## Tech Stack
 
@@ -55,10 +57,35 @@ NODE_ENV=development
 npm start
 ```
 
+6. Open your browser and navigate to:
+```
+http://localhost:3000
+```
+
+You'll see the professional frontend with animated background. The API is also accessible at `/api` endpoints.
+
 For development with auto-reload:
 ```bash
 npm run dev
 ```
+
+## Frontend Features
+
+The application includes a professional, modern frontend with:
+
+- **Animated Gradient Background**: Smoothly shifting gradient colors with floating animated shapes
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Interactive Navigation**: Smooth scrolling and mobile-friendly hamburger menu
+- **Landing Page**: Showcases hotel amenities and available rooms
+- **Contact Page**: Professional contact form with hotel information
+- **Modal Authentication**: Login and registration forms in elegant modals
+- **Room Booking**: Interactive booking system integrated with the backend API
+- **Professional Animations**: Smooth transitions, hover effects, and loading states
+
+### Pages
+
+- **Home** (`index.html`): Main landing page with hero section, amenities, and room listings
+- **Contact** (`contact.html`): Contact form and hotel information with the same animated background
 
 ## API Endpoints
 
@@ -139,11 +166,19 @@ npm test
 
 ```
 EL-Cielo-Hotel-management-system/
+├── public/                # Frontend files
+│   ├── index.html        # Main landing page
+│   ├── contact.html      # Contact page
+│   ├── css/
+│   │   └── style.css     # Styles with animated background
+│   └── js/
+│       └── main.js       # Frontend JavaScript
 ├── controllers/           # Request handlers
 │   ├── authController.js
 │   └── roomController.js
 ├── middleware/            # Custom middleware
-│   └── auth.js
+│   ├── auth.js
+│   └── rateLimiter.js
 ├── models/                # Data models
 │   ├── database.js
 │   ├── User.js

@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const config = require('./config/config');
 
 const authRoutes = require('./routes/auth');
@@ -13,29 +14,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Welcome to El Cielo Hotel Management System API',
-    endpoints: {
-      auth: {
-        register: 'POST /api/auth/register',
-        login: 'POST /api/auth/login',
-        profile: 'GET /api/auth/profile (requires authentication)'
-      },
-      rooms: {
-        getAllRooms: 'GET /api/rooms',
-        getAvailableRooms: 'GET /api/rooms/available',
-        getRoomById: 'GET /api/rooms/:id',
-        bookRoom: 'POST /api/rooms/:id/book (requires authentication)',
-        getUserBookings: 'GET /api/rooms/bookings/my-bookings (requires authentication)'
-      }
-    }
-  });
-});
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
+// API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomRoutes);
+
+// Serve index.html for root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
