@@ -31,6 +31,7 @@
                     <li><a href="#rooms">Rooms</a></li>
                     <li><a href="#amenities">Amenities</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#" class="btn-cart" id="cartButton">🛒 Cart (<span id="cartCount">0</span>)</a></li>
                     <li><a href="#" class="btn-login">Login</a></li>
                 </ul>
                 <div class="hamburger">
@@ -175,6 +176,21 @@
                 <button type="submit" class="btn btn-primary">Register</button>
                 <p class="form-footer">Already have an account? <a href="#" id="showLogin">Login</a></p>
             </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content cart-modal-content">
+            <span class="close">&times;</span>
+            <h2>🛒 Your Reservation Cart</h2>
+            <div id="cartItems"></div>
+            <div class="cart-summary" id="cartSummary" style="display: none;">
+                <h3>Summary</h3>
+                <p><strong>Total Rooms:</strong> <span id="totalRooms">0</span></p>
+                <p><strong>Total Price:</strong> $<span id="totalPrice">0</span>/night</p>
+                <button class="btn btn-primary" id="checkoutBtn" style="width: 100%; margin-top: 1rem;">Proceed to Checkout</button>
+            </div>
         </div>
     </div>
 
